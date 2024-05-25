@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 1184996}
   - component: {fileID: 1184995}
   - component: {fileID: 1185001}
+  - component: {fileID: 1185002}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -243,7 +244,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1184999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -329,6 +330,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 281796739}
   maxHp: 200
+--- !u!114 &1185002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091c2adf5ce19d949bcb45b8ce235d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: 0
+  moveSpeed: 5
+  jumpForce: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &120287548
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +467,7 @@ GameObject:
   - component: {fileID: 171440144}
   - component: {fileID: 171440147}
   - component: {fileID: 171440148}
+  - component: {fileID: 171440149}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -481,7 +501,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &171440145
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -598,6 +618,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 737188354}
   maxHp: 200
+--- !u!114 &171440149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171440142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091c2adf5ce19d949bcb45b8ce235d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: 1
+  moveSpeed: 5
+  jumpForce: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &281796737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1100,7 @@ GameObject:
   - component: {fileID: 891451574}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1770,6 +1808,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 891451573}
   - {fileID: 171440146}
+  - {fileID: 1185000}
   - {fileID: 120287552}
   - {fileID: 366056327}
-  - {fileID: 1185000}
