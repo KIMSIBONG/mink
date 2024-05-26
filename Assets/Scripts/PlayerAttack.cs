@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     {
         timeSinceAttack += Time.deltaTime;
 
-        if (player1 && Input.GetKeyDown(KeyCode.K) && timeSinceAttack > 0.35f)
+        if (player1 && Input.GetKeyDown(KeyCode.J) && timeSinceAttack > 0.35f)
         {
             Attack();
         }
