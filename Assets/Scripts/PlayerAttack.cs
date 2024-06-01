@@ -24,6 +24,17 @@ public class PlayerAttack : MonoBehaviour
         {
             Attack();
         }
+        //가드(미완성
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Guard();
+            Debug.Log("가");
+        }
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            damage = 10f;
+            Debug.Log("풀");
+        }
     }
 
     private void Attack()
@@ -61,5 +72,10 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(attackPos.position, boxSize);
     }
+    private void Guard()
+    {
+        damage = 0f;
+    }
+    
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class HpHandler : MonoBehaviour
 {
@@ -54,4 +55,5 @@ public class HpHandler : MonoBehaviour
             transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
         }
     }
+    
 }
