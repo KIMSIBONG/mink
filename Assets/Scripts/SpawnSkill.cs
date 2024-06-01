@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnSkill : MonoBehaviour
 {
     public GameObject prefabToSpawn;  
     public Transform spawnLocation; 
