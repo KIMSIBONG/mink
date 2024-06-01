@@ -334,6 +334,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 281796739}
   maxHp: 200
+  KnockbackTime: 0.1
+  currentKnockbackTime: 0
+  speed: 1
 --- !u!114 &1185002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,6 +721,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 737188354}
   maxHp: 200
+  KnockbackTime: 0.1
+  currentKnockbackTime: 0
+  speed: 1
 --- !u!114 &171440149
 MonoBehaviour:
   m_ObjectHideFlags: 0

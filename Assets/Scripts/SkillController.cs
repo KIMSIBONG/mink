@@ -10,7 +10,10 @@ public class SkillController : MonoBehaviour
     void Update()
     {
         if (!gameObject.GetComponent<SpriteRenderer>().flipX)
+        {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
+        }
+
         else
             transform.Translate(Vector3.left * speed * Time.deltaTime);
     }

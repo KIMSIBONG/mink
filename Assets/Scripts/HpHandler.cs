@@ -12,15 +12,16 @@ public class HpHandler : MonoBehaviour
 
     //³Ë¹é
     public float KnockbackTime = 0.2f;
-    private float currentKnockbackTime = 0;
-    public float pushForce = 100f;
+    [SerializeField] private float currentKnockbackTime = 0;
+    public float speed = 100f;
+    float currentSpeed;
     private Rigidbody2D rb;
-    public GameObject KnockBackObject;
 
     private void Update()
     {
         if (currentKnockbackTime > 0)
         {
+            currentSpeed = speed / (KnockbackTime - currentKnockbackTime + 0.1f);
             currentKnockbackTime -= Time.deltaTime;
             KnockBack();
         }
@@ -41,8 +42,16 @@ public class HpHandler : MonoBehaviour
     }
     private void KnockBack()
     {
-        Vector2 pushDirection = -KnockBackObject.transform.forward * pushForce;
-        rb.AddForce(pushDirection, ForceMode2D.Impulse);
+        if(GetComponent<PlayerAttack>().player1)
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
+    
 
+        else
+        {
+            Vector2 pushDirection = Vector2.right;
+            transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
+        }
     }
 }
