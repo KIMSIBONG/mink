@@ -350,7 +350,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: 0
-  moveSpeed: 5
   jumpForce: 10
   groundLayer:
     serializedVersion: 2
@@ -369,6 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: 0
   damage: 10
+  Canmove: 1
   attackPos: {fileID: 16440285}
   boxSize: {x: 2, y: 2}
 --- !u!114 &1185004
@@ -737,7 +737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: 1
-  moveSpeed: 5
   jumpForce: 10
   groundLayer:
     serializedVersion: 2
@@ -756,6 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: 1
   damage: 10
+  Canmove: 1
   attackPos: {fileID: 115941874}
   boxSize: {x: 2, y: 2}
 --- !u!114 &171440151

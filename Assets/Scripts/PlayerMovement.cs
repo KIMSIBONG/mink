@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public bool player1 = true;
-    public float moveSpeed = 5f;
+    private float moveSpeed = 5f;
     public float jumpForce = 10f;
     public LayerMask groundLayer;
 
@@ -13,33 +13,46 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     void Update()
     {
         // 좌우 이동
-        if(player1)
+        if (GetComponent<PlayerAttack>().Canmove == true)
         {
-            float moveInput = Input.GetAxisRaw("Horizontal");
+            moveSpeed = 5f;
 
-            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+
+            if (player1)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                float moveInput = Input.GetAxisRaw("Horizontal");
+
+                rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+                if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                }
+            }
+            else
+            {
+                float moveInput = Input.GetAxisRaw("Horizontal1");
+
+                rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+                if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                }
             }
         }
-        else
+        if (GetComponent<PlayerAttack>().Canmove == false)
         {
-            float moveInput = Input.GetAxisRaw("Horizontal1");
-
-            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-
-            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            }
+            moveSpeed = 0f;
         }
+
 
     }
 

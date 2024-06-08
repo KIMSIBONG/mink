@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     public float damage = 10f;
     private float timeSinceAttack;
     private int m_currentAttack = 0;
+    public bool Canmove = true;
+    
     [SerializeField] private Transform attackPos;
     [SerializeField] private Vector2 boxSize;
 
@@ -18,15 +20,21 @@ public class PlayerAttack : MonoBehaviour
 
         if (player1 && Input.GetKeyDown(KeyCode.J) && timeSinceAttack > 0.35f)
         {
+            
             Attack();
+            Canmove = false;
         }
         else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
         {
+            
             Attack();
+            Canmove = false;
+            
         }
         //가드(미완성
         if (Input.GetKeyDown(KeyCode.G))
         {
+
             Guard();
             Debug.Log("가");
         }
@@ -35,10 +43,16 @@ public class PlayerAttack : MonoBehaviour
             damage = 10f;
             Debug.Log("풀");
         }
+
+        if (timeSinceAttack > 0.35f)
+        {
+            Canmove = true;
+        }
     }
 
     private void Attack()
     {
+        
         m_currentAttack++;
         damage += 2.0f;
 
@@ -66,6 +80,8 @@ public class PlayerAttack : MonoBehaviour
         }
 
         timeSinceAttack = 0.0f;
+        
+        
     }
     private void OnDrawGizmos()
     {
