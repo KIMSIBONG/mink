@@ -29,14 +29,14 @@ public class PlayerAttack : MonoBehaviour
     {
         timeSinceAttack += Time.deltaTime;
 
-        if (player1 && Input.GetKey(KeyCode.J) && timeSinceAttack > 0.35f)
+        if (player1 && Input.GetKeyDown(KeyCode.J) && timeSinceAttack > 0.35f)
         {
             
             Attack();
 
             Canmove = false;
         }
-        else if (!player1 && Input.GetKey(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
+        else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
         {
             
             Attack();
@@ -74,7 +74,7 @@ public class PlayerAttack : MonoBehaviour
             Canmove = true;
         }
         //½ºÅ³
-        if (player1 && Input.GetKey(KeyCode.Z) && timeSinceAttack > 0.35f)
+        if (player1 && Input.GetKeyDown(KeyCode.Z) && timeSinceAttack > 0.35f)
         {
             animator.SetTrigger("flykick");
             
