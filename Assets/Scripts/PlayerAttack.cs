@@ -6,7 +6,7 @@ using static UnityEditor.PlayerSettings;
 public class PlayerAttack : MonoBehaviour
 {
     public bool player1 = true;
-    public float damage = 10f;
+    public float damage = 5f;
     private float timeSinceAttack;
     private int m_currentAttack = 0;
     public bool Canmove = true;
@@ -14,6 +14,9 @@ public class PlayerAttack : MonoBehaviour
     public bool guard2 = false;
     private Animator animator;
     private HpHandler knocktry;
+
+
+    private float skilldamage = 15f;
 
     [SerializeField] private Transform attackPos;
     [SerializeField] private Vector2 boxSize;
@@ -26,14 +29,14 @@ public class PlayerAttack : MonoBehaviour
     {
         timeSinceAttack += Time.deltaTime;
 
-        if (player1 && Input.GetKeyDown(KeyCode.J) && timeSinceAttack > 0.35f)
+        if (player1 && Input.GetKey(KeyCode.J) && timeSinceAttack > 0.35f)
         {
             
             Attack();
 
             Canmove = false;
         }
-        else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
+        else if (!player1 && Input.GetKey(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
         {
             
             Attack();
@@ -61,10 +64,21 @@ public class PlayerAttack : MonoBehaviour
         if (guard1 == true)
         {
             knocktry.knockback = true;
+            damage = 1f;
+            Canmove = false;
         }
         if (guard1 == false)
         {
             knocktry.knockback = false;
+            damage = 5f;
+            Canmove = true;
+        }
+        //½ºÅ³
+        if (player1 && Input.GetKey(KeyCode.Z) && timeSinceAttack > 0.35f)
+        {
+            animator.SetTrigger("flykick");
+            
+            
         }
     }
 
@@ -72,18 +86,22 @@ public class PlayerAttack : MonoBehaviour
     {
         
         m_currentAttack++;
-        damage += 2.0f;
+        damage += 3.0f;
+        //1Å¸
+        animator.SetTrigger("attack");
+
+
 
         if (m_currentAttack > 3)
         {
-            damage = 10.0f;
+            damage = 5.0f;
             m_currentAttack = 1;
         }
 
 
         if (timeSinceAttack > 1.0f)
         {
-            damage = 10.0f;
+            damage = 5.0f;
             m_currentAttack = 1;
         }
 
@@ -96,7 +114,7 @@ public class PlayerAttack : MonoBehaviour
 
             }
         }
-        animator.SetTrigger("flykick");
+        
         timeSinceAttack = 0.0f;
         
         
@@ -106,10 +124,7 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(attackPos.position, boxSize);
     }
-    private void Guard()
-    {
-        damage = 0f;
-    }
+    
     
 
 }

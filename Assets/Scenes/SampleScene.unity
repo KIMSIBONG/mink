@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: 0
-  damage: 10
+  damage: 5
   Canmove: 1
   guard1: 0
   guard2: 0
@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: 1
-  damage: 10
+  damage: 5
   Canmove: 1
   guard1: 0
   guard2: 0
@@ -1642,7 +1642,7 @@ GameObject:
   - component: {fileID: 1287035751}
   - component: {fileID: 1287035752}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Square(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
