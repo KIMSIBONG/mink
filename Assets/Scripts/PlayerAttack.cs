@@ -10,10 +10,18 @@ public class PlayerAttack : MonoBehaviour
     private float timeSinceAttack;
     private int m_currentAttack = 0;
     public bool Canmove = true;
-    
+    public bool guard1 = false;
+    public bool guard2 = false;
+    private Animator animator;
+    private HpHandler knocktry;
+
     [SerializeField] private Transform attackPos;
     [SerializeField] private Vector2 boxSize;
-
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        knocktry = GetComponent<HpHandler>();
+    }
     void Update()
     {
         timeSinceAttack += Time.deltaTime;
@@ -22,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
         {
             
             Attack();
+
             Canmove = false;
         }
         else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
@@ -35,18 +44,27 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
 
-            Guard();
+            guard1 = true;
             Debug.Log("°¡");
         }
         if (Input.GetKeyUp(KeyCode.G))
         {
-            damage = 10f;
+            guard1 = false;
             Debug.Log("Ç®");
         }
 
         if (timeSinceAttack > 0.35f)
         {
             Canmove = true;
+        }
+        
+        if (guard1 == true)
+        {
+            knocktry.knockback = true;
+        }
+        if (guard1 == false)
+        {
+            knocktry.knockback = false;
         }
     }
 
@@ -78,7 +96,7 @@ public class PlayerAttack : MonoBehaviour
 
             }
         }
-
+        animator.SetTrigger("flykick");
         timeSinceAttack = 0.0f;
         
         

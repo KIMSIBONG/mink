@@ -10,6 +10,7 @@ public class HpHandler : MonoBehaviour
     public Slider slider;
     public float maxHp = 200f;
     private float currentHp;
+    public bool knockback = false;
 
     //³Ë¹é
     public float KnockbackTime = 0.2f;
@@ -20,7 +21,7 @@ public class HpHandler : MonoBehaviour
 
     private void Update()
     {
-        if (currentKnockbackTime > 0)
+        if (currentKnockbackTime > 0 && knockback == true)
         {
             currentSpeed = speed / (KnockbackTime - currentKnockbackTime + 0.1f);
             currentKnockbackTime -= Time.deltaTime;
