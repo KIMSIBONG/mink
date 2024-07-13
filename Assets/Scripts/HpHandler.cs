@@ -46,6 +46,7 @@ public class HpHandler : MonoBehaviour
         slider.value = currentHp / maxHp;
         currentKnockbackTime = KnockbackTime;
     }
+    
     private void KnockBack()
     {
         if(GetComponent<PlayerAttack>().player1)

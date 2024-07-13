@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: 0
-  damage: 5
+  damage: 10
   dashspeed: 5
   AttackDashDistance: 3
   Canmove: 1
@@ -458,7 +458,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.72, y: 1.62}
+  m_Size: {x: 1.2, y: 1.6}
   m_EdgeRadius: 0
 --- !u!50 &218879304
 Rigidbody2D:
@@ -1019,6 +1019,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670341132}
   m_CullTransparentMesh: 1
+--- !u!1001 &716589759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3800090755999319652, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_Name
+      value: dashwind_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846453979246387293, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
 --- !u!1 &737188352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1386,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.72, y: 1.62}
+  m_Size: {x: 1.2, y: 1.6}
   m_EdgeRadius: 0
 --- !u!114 &829993374
 MonoBehaviour:
@@ -1361,7 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: 1
-  damage: 5
+  damage: 10
   dashspeed: 5
   AttackDashDistance: 3
   Canmove: 1
@@ -2359,3 +2416,4 @@ SceneRoots:
   - {fileID: 829993372}
   - {fileID: 218879307}
   - {fileID: 208836249}
+  - {fileID: 716589759}

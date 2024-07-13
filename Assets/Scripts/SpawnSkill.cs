@@ -4,8 +4,12 @@ public class SpawnSkill : MonoBehaviour
 {
     public GameObject prefabToSpawn;  
     public Transform spawnLocation;
+    private Animator animator;
 
-    
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -17,6 +21,7 @@ public class SpawnSkill : MonoBehaviour
     
     private void SpawnPrefab()
     {
+        animator.SetTrigger("attack");
         if (gameObject.GetComponent<PlayerAttack>().player1)
             Instantiate(prefabToSpawn, spawnLocation.position, Quaternion.identity);
         else

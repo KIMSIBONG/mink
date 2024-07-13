@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +9,13 @@ public class PlayerAttack : MonoBehaviour
     public bool player1 = true;
     public float damage = 5f;
     private float timeSinceAttack;
-
+    
     public float dashspeed = 5f; // 이동 속도
     public float AttackDashDistance = 3f;
     public bool Canmove = true;
     public bool guard1 = false;
     public bool guard2 = false;
+   
     public GameObject dasheffect;
     public Transform dashspawn;
     private Animator animator;
@@ -82,8 +84,9 @@ public class PlayerAttack : MonoBehaviour
         if (player1 && Input.GetKeyDown(KeyCode.Z) && timeSinceAttack > 0.35f)
         {
             animator.SetTrigger("flykick");
-            
-            
+            Skill();
+
+
         }
     }
 
@@ -127,6 +130,18 @@ public class PlayerAttack : MonoBehaviour
         
 
 
+    }
+    private void Skill()
+    {
+        Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(attackPos.position, boxSize, 0);
+        foreach (Collider2D collider in collider2Ds)
+        {
+            if (collider.tag == "Player" && collider.gameObject != gameObject)
+            {
+                collider.GetComponent<HpHandler>().SetHp(damage);
+
+            }
+        }
     }
     private void OnDrawGizmos()
     {
