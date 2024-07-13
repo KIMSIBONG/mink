@@ -35,12 +35,34 @@ public class PlayerMovement : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.W) && isGrounded)
                 {
-                    
+
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                     animator.SetBool("Jump", true);
                 }
-                
-                
+
+                if (Input.GetKeyDown(KeyCode.A) && isGrounded)
+                {
+
+                    animator.SetBool("Walk", true);
+                    
+                }
+                if (Input.GetKeyUp(KeyCode.A) && isGrounded)
+                {
+                    animator.SetBool("Walk", false);
+                }
+
+                if (Input.GetKeyDown(KeyCode.D) && isGrounded)
+                {
+
+                    animator.SetBool("Walk", true);
+                    
+                }
+                if (Input.GetKeyUp(KeyCode.D) && isGrounded)
+                {
+                    animator.SetBool("Walk", false);
+                }
+
+
             }
             else
             {
@@ -51,8 +73,31 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    animator.SetBool("Jump", true);
                 }
+                //걸음
+                if (Input.GetKeyDown(KeyCode.RightArrow) && isGrounded)
+                {
+
+                    animator.SetBool("Walk", true);
+                }
+                if (Input.GetKeyUp(KeyCode.RightArrow) && isGrounded)
+                {
+                    animator.SetBool("Walk", false);
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow) && isGrounded)
+                {
+
+                    animator.SetBool("Walk", true);
+                }
+                if (Input.GetKeyUp(KeyCode.LeftArrow) && isGrounded)
+                {
+                    animator.SetBool("Walk", false);
+                }
+
             }
+            
         }
         if (GetComponent<PlayerAttack>().Canmove == false)
         {

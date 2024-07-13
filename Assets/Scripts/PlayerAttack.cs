@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     private HpHandler knocktry;
 
 
-    private float skilldamage = 15f;
+    
 
     [SerializeField] private Transform attackPos;
     [SerializeField] private Vector2 boxSize;
