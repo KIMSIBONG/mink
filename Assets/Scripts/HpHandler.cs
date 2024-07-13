@@ -11,6 +11,8 @@ public class HpHandler : MonoBehaviour
     public float maxHp = 200f;
     private float currentHp;
     public bool knockback = false;
+    private Animator animator;
+
 
     //³Ë¹é
     public float KnockbackTime = 0.2f;
@@ -18,7 +20,7 @@ public class HpHandler : MonoBehaviour
     public float speed = 100f;
     float currentSpeed;
     private Rigidbody2D rb;
-
+    
     private void Update()
     {
         if (currentKnockbackTime > 0 && knockback == true)
@@ -31,6 +33,7 @@ public class HpHandler : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentHp = maxHp;
         slider.value = currentHp / maxHp;
@@ -38,6 +41,7 @@ public class HpHandler : MonoBehaviour
     
     public void SetHp(float damage) 
     {
+        animator.SetTrigger("hurt");
         currentHp -= damage;
         slider.value = currentHp / maxHp;
         currentKnockbackTime = KnockbackTime;

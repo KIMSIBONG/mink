@@ -8,15 +8,20 @@ public class PlayerAttack : MonoBehaviour
     public bool player1 = true;
     public float damage = 5f;
     private float timeSinceAttack;
-    private int m_currentAttack = 0;
+
+    public float dashspeed = 5f; // 이동 속도
+    public float AttackDashDistance = 3f;
     public bool Canmove = true;
     public bool guard1 = false;
     public bool guard2 = false;
+    public GameObject dasheffect;
+    public Transform dashspawn;
     private Animator animator;
     private HpHandler knocktry;
-
-
+    private float DashBreaktime = 0f;
     
+
+
 
     [SerializeField] private Transform attackPos;
     [SerializeField] private Vector2 boxSize;
@@ -34,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
             
             Attack();
 
-            Canmove = false;
+            
         }
         else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
         {
@@ -84,26 +89,19 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
+
+        Instantiate(dasheffect, dashspawn.position, Quaternion.identity);
+        DashBreaktime++;
         
-        m_currentAttack++;
-        damage += 3.0f;
+        
+
+
         //1타
-        animator.SetTrigger("attack");
+        animator.SetTrigger("strike");
 
 
 
-        if (m_currentAttack > 3)
-        {
-            damage = 5.0f;
-            m_currentAttack = 1;
-        }
-
-
-        if (timeSinceAttack > 1.0f)
-        {
-            damage = 5.0f;
-            m_currentAttack = 1;
-        }
+        
 
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(attackPos.position, boxSize, 0);
         foreach (Collider2D collider in collider2Ds)
@@ -111,13 +109,24 @@ public class PlayerAttack : MonoBehaviour
             if (collider.tag == "Player" && collider.gameObject != gameObject)
             {
                 collider.GetComponent<HpHandler>().SetHp(damage);
-
+                
             }
         }
         
-        timeSinceAttack = 0.0f;
+
+        // 실제 이동 적용
+        if (DashBreaktime < 0.35)
+        {
+            transform.Translate(Vector3.right * dashspeed * Time.deltaTime);
+        }
+        if (DashBreaktime > 0.35)
+        {
+            Destroy(dasheffect);
+        }
         
         
+
+
     }
     private void OnDrawGizmos()
     {
