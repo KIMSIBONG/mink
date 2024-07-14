@@ -941,7 +941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: {fileID: 829993372}
-  player2: {fileID: 0}
+  player2: {fileID: 218879307}
   minDistanceX: 10
   fixedY: -1
   zoomSpeed: 3
