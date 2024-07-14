@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Unity.VisualScripting.Member;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -15,7 +16,7 @@ public class HpHandler : MonoBehaviour
     private Animator animator;
     public float force1 = 1f;
     private float hurttime;
-
+    private float endGame;
     //³Ë¹é
     public float KnockbackTime = 0.2f;
     [SerializeField] private float currentKnockbackTime = 0;
@@ -37,7 +38,13 @@ public class HpHandler : MonoBehaviour
         }
         if (currentHp <= 0)
         {
+            endGame += Time.deltaTime;
             animator.SetBool("die",true);
+
+        }
+        if (endGame > 3)
+        {
+            SceneManager.LoadScene("end");
         }
     }
 
