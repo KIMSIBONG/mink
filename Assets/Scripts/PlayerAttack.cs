@@ -14,13 +14,13 @@ public class PlayerAttack : MonoBehaviour
     public float AttackDashDistance = 3f;
     public bool Canmove = true;
     public bool guard1 = false;
-    public bool guard2 = false;
+    
     public float force = 50f;
     public GameObject dasheffect;
     public Transform dashspawn;
     private Animator animator;
     private HpHandler knocktry;
-    private float DashBreaktime = 0f;
+    
     private Rigidbody2D rb;
 
 
@@ -39,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (player1 && Input.GetKeyDown(KeyCode.J) && timeSinceAttack > 0.35f)
         {
-            DashBreaktime += Time.deltaTime;
+            
             Attack();
             
             
@@ -49,22 +49,26 @@ public class PlayerAttack : MonoBehaviour
         {
 
             guard1 = true;
+            animator.SetBool("guard", true);
             Debug.Log("가드");
         }
         if (player1 && Input.GetKeyUp(KeyCode.G))
         {
             guard1 = false;
             Debug.Log("가드풀림");
+            animator.SetBool("guard", false);
         }
-        if (!player1 && Input.GetKeyDown(KeyCode.G))
+        if (!player1 && Input.GetKeyDown(KeyCode.Keypad0))
         {
-
+            
             guard1 = true;
+            animator.SetBool("guard", true);
             Debug.Log("가드");
         }
-        if (!player1 && Input.GetKeyUp(KeyCode.G))
+        if (!player1 && Input.GetKeyUp(KeyCode.Keypad0))
         {
             guard1 = false;
+            animator.SetBool("guard", false);
             Debug.Log("가드풀림");
         }
         else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
@@ -87,15 +91,24 @@ public class PlayerAttack : MonoBehaviour
             knocktry.knockback = true;
             damage = 1f;
             Canmove = false;
+            
         }
         if (guard1 == false)
         {
             knocktry.knockback = false;
             damage = 5f;
             Canmove = true;
+            
         }
         //스킬
         if (player1 && Input.GetKeyDown(KeyCode.Z) && timeSinceAttack > 0.35f)
+        {
+            animator.SetTrigger("flykick");
+            Skill();
+
+
+        }
+        if (!player1 && Input.GetKeyDown(KeyCode.Keypad3) && timeSinceAttack > 0.35f)
         {
             animator.SetTrigger("flykick");
             Skill();

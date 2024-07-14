@@ -394,7 +394,6 @@ MonoBehaviour:
   AttackDashDistance: 3
   Canmove: 1
   guard1: 0
-  guard2: 0
   force: 1
   dasheffect: {fileID: 3800090755999319652, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
   dashspawn: {fileID: 2145258268}
@@ -942,7 +941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: {fileID: 829993372}
-  player2: {fileID: 218879307}
+  player2: {fileID: 0}
   minDistanceX: 10
   fixedY: -1
   zoomSpeed: 3
@@ -1369,7 +1368,6 @@ MonoBehaviour:
   AttackDashDistance: 3
   Canmove: 1
   guard1: 0
-  guard2: 0
   force: 1
   dasheffect: {fileID: 3800090755999319652, guid: 223b5926feceb4e41949986ed9ea31d6, type: 3}
   dashspawn: {fileID: 475935997}

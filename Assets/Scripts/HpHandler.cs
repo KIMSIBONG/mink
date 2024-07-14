@@ -22,14 +22,22 @@ public class HpHandler : MonoBehaviour
     public float speed = 100f;
     float currentSpeed;
     private Rigidbody2D rb;
-    
+    //문제는 가드를 맞고난 후에 해도 날라가는것 고치는법 1 
+    //1.
     private void Update()
     {
-        if (currentKnockbackTime > 0 && knockback == true)
+        if (currentKnockbackTime > 0 && knockback == true && GetComponent<PlayerAttack>().guard1 == true)
         {
             currentSpeed = speed / (KnockbackTime - currentKnockbackTime + 0.1f);
             currentKnockbackTime -= Time.deltaTime;
+            
             KnockBack();
+            
+            
+        }
+        if (currentHp <= 0)
+        {
+            animator.SetBool("die",true);
         }
     }
 
@@ -55,7 +63,7 @@ public class HpHandler : MonoBehaviour
     {
         if(GetComponent<PlayerAttack>().player1)
         {
-            rb.AddForce(Vector2.right * force1, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.left * force1, ForceMode2D.Impulse);
         }
     
 

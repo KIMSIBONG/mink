@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkillController : MonoBehaviour
 {
     public float speed = 5f; // 이동 속도
-    public float damage = 10f;
+    public float skilldamage = 15f;
     public Transform firespawn;
     public GameObject fire;
     void Update()
@@ -24,11 +24,16 @@ public class SkillController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             
-            collision.gameObject.GetComponent<HpHandler>().SetHp(damage);
+            collision.gameObject.GetComponent<HpHandler>().SetHp(skilldamage);
             
+                
+
+                
         
             Destroy(gameObject);
             Instantiate(fire, firespawn.position, Quaternion.identity);
+            
         }
+        
     }
 }
