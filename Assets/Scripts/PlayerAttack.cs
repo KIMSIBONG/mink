@@ -7,20 +7,25 @@ using static UnityEditor.PlayerSettings;
 public class PlayerAttack : MonoBehaviour
 {
     public bool player1 = true;
-    public float damage = 5f;
+    public float damage = 10f;
     private float timeSinceAttack;
     
     public float dashspeed = 5f; // 이동 속도
     public float AttackDashDistance = 3f;
     public bool Canmove = true;
     public bool guard1 = false;
-    
+    public bool guard2 = false;
     public float force = 50f;
     public GameObject dasheffect;
     public Transform dashspawn;
     private Animator animator;
     private HpHandler knocktry;
-    
+
+
+    private float Zskillcool1 = 1f;
+    private float Zskillcool2 = 1f;
+    private float attackcool = 1f;
+    private float attackcool1 = 1f;
     private Rigidbody2D rb;
 
 
@@ -36,34 +41,50 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         timeSinceAttack += Time.deltaTime;
-
-        if (player1 && Input.GetKeyDown(KeyCode.J) && timeSinceAttack > 0.35f)
+        attackcool -= Time.deltaTime;
+        attackcool1 -= Time.deltaTime;
+        Zskillcool1 -= Time.deltaTime;
+        Zskillcool2 -= Time.deltaTime;
+        if (player1 && Input.GetKeyDown(KeyCode.X) && timeSinceAttack > 0.35f && attackcool<=0f)
         {
             
             Attack();
-            
-            
+            attackcool = 1f;
+            Canmove = false;
+        }
+        else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f && attackcool1 <= 0f)
+        {
+
+            Attack();
+            Canmove = false;
+            attackcool1 = 1f;
         }
         //가드
         if (player1 && Input.GetKeyDown(KeyCode.G))
         {
-
+            
             guard1 = true;
             animator.SetBool("guard", true);
             Debug.Log("가드");
+            
+
         }
+        
         if (player1 && Input.GetKeyUp(KeyCode.G))
         {
             guard1 = false;
             Debug.Log("가드풀림");
             animator.SetBool("guard", false);
         }
+        
         if (!player1 && Input.GetKeyDown(KeyCode.Keypad0))
         {
             
             guard1 = true;
             animator.SetBool("guard", true);
             Debug.Log("가드");
+            
+
         }
         if (!player1 && Input.GetKeyUp(KeyCode.Keypad0))
         {
@@ -71,13 +92,7 @@ public class PlayerAttack : MonoBehaviour
             animator.SetBool("guard", false);
             Debug.Log("가드풀림");
         }
-        else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
-        {
-            
-            Attack();
-            Canmove = false;
-            
-        }
+        
         //가드(미완성
         
 
@@ -85,34 +100,34 @@ public class PlayerAttack : MonoBehaviour
         {
             Canmove = true;
         }
-        
         if (guard1 == true)
         {
             knocktry.knockback = true;
-            damage = 1f;
             Canmove = false;
-            
+            damage = 1f;
         }
+        
+        
         if (guard1 == false)
         {
             knocktry.knockback = false;
-            damage = 5f;
+            damage = 10f;
             Canmove = true;
             
         }
         //스킬
-        if (player1 && Input.GetKeyDown(KeyCode.Z) && timeSinceAttack > 0.35f)
+        if (player1 && Input.GetKeyDown(KeyCode.Z) && timeSinceAttack > 0.35f && Zskillcool1 <= 0f)
         {
             animator.SetTrigger("flykick");
             Skill();
-
+            Zskillcool1 = 1f;
 
         }
-        if (!player1 && Input.GetKeyDown(KeyCode.Keypad3) && timeSinceAttack > 0.35f)
+        if (!player1 && Input.GetKeyDown(KeyCode.Keypad3) && timeSinceAttack > 0.35f && Zskillcool2 <= 0f)
         {
             animator.SetTrigger("flykick");
             Skill();
-
+            Zskillcool2 = 1f;
 
         }
     }

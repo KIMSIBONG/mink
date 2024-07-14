@@ -6,28 +6,31 @@ public class SpawnSkill : MonoBehaviour
     public GameObject prefabToSpawn;  
     public Transform spawnLocation;
     private Animator animator;
-    
+    private float skillcool1 = 2f;
+    private float skillcool2 = 2f;
     private void Start()
     {
         animator = GetComponent<Animator>();
     }
     void Update()
     {
-        if (gameObject.GetComponent<PlayerAttack>().player1 && Input.GetKeyDown(KeyCode.F))
+        skillcool1 -= Time.deltaTime;
+        skillcool2 -= Time.deltaTime;
+        if (gameObject.GetComponent<PlayerAttack>().player1 && Input.GetKeyDown(KeyCode.F)&& skillcool1 <= 0f)
         {
 
             animator.SetTrigger("attack");
             SpawnPrefab();
-            
-            
+            skillcool1 = 2f;
+
         }
 
-        if (!gameObject.GetComponent<PlayerAttack>().player1 && Input.GetKeyDown(KeyCode.Keypad2))
+        if (!gameObject.GetComponent<PlayerAttack>().player1 && Input.GetKeyDown(KeyCode.Keypad2) && skillcool2 <= 0f)
         {
 
             animator.SetTrigger("attack");
             SpawnPrefab();
-            
+            skillcool2 = 2f;
 
         }
 
