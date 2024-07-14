@@ -14,7 +14,7 @@ public class HpHandler : MonoBehaviour
     public bool knockback = false;
     private Animator animator;
     public float force1 = 1f;
-
+    private float hurttime;
 
     //³Ë¹é
     public float KnockbackTime = 0.2f;
@@ -43,10 +43,19 @@ public class HpHandler : MonoBehaviour
     
     public void SetHp(float damage) 
     {
+        hurttime += Time.deltaTime;
         animator.SetTrigger("hurt");
         currentHp -= damage;
         slider.value = currentHp / maxHp;
         currentKnockbackTime = KnockbackTime;
+        if (hurttime < 0.25)
+        {
+            GetComponent<PlayerAttack>().Canmove = false;
+        }
+        else if (hurttime > 0.25)
+        {
+            GetComponent<PlayerAttack>().Canmove = true;
+        }
     }
     
     private void KnockBack()

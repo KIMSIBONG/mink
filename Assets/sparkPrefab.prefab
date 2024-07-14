@@ -180,3 +180,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   damage: 10
+  firespawn: {fileID: 5413807881267142297}
+  fire: {fileID: 7209338244099067914, guid: c9e5e7ef7b8b5cd479cb4963d292b132, type: 3}

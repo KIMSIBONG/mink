@@ -6,7 +6,8 @@ public class SkillController : MonoBehaviour
 {
     public float speed = 5f; // 이동 속도
     public float damage = 10f;
-
+    public Transform firespawn;
+    public GameObject fire;
     void Update()
     {
         if (!gameObject.GetComponent<SpriteRenderer>().flipX)
@@ -24,9 +25,10 @@ public class SkillController : MonoBehaviour
         {
             
             collision.gameObject.GetComponent<HpHandler>().SetHp(damage);
-
             
+        
             Destroy(gameObject);
+            Instantiate(fire, firespawn.position, Quaternion.identity);
         }
     }
 }
