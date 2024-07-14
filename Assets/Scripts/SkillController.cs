@@ -22,7 +22,9 @@ public class SkillController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            
             collision.gameObject.GetComponent<HpHandler>().SetHp(damage);
+
             
             Destroy(gameObject);
         }

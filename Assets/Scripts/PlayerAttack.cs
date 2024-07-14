@@ -15,13 +15,13 @@ public class PlayerAttack : MonoBehaviour
     public bool Canmove = true;
     public bool guard1 = false;
     public bool guard2 = false;
-   
+    public float force = 50f;
     public GameObject dasheffect;
     public Transform dashspawn;
     private Animator animator;
     private HpHandler knocktry;
     private float DashBreaktime = 0f;
-    
+    private Rigidbody2D rb;
 
 
 
@@ -29,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Vector2 boxSize;
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         knocktry = GetComponent<HpHandler>();
     }
@@ -38,10 +39,33 @@ public class PlayerAttack : MonoBehaviour
 
         if (player1 && Input.GetKeyDown(KeyCode.J) && timeSinceAttack > 0.35f)
         {
-            
+            DashBreaktime += Time.deltaTime;
             Attack();
-
             
+            
+        }
+        //가드
+        if (player1 && Input.GetKeyDown(KeyCode.G))
+        {
+
+            guard1 = true;
+            Debug.Log("가드");
+        }
+        if (player1 && Input.GetKeyUp(KeyCode.G))
+        {
+            guard1 = false;
+            Debug.Log("가드풀림");
+        }
+        if (!player1 && Input.GetKeyDown(KeyCode.G))
+        {
+
+            guard1 = true;
+            Debug.Log("가드");
+        }
+        if (!player1 && Input.GetKeyUp(KeyCode.G))
+        {
+            guard1 = false;
+            Debug.Log("가드풀림");
         }
         else if (!player1 && Input.GetKeyDown(KeyCode.Keypad1) && timeSinceAttack > 0.35f)
         {
@@ -51,17 +75,7 @@ public class PlayerAttack : MonoBehaviour
             
         }
         //가드(미완성
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-
-            guard1 = true;
-            Debug.Log("가");
-        }
-        if (Input.GetKeyUp(KeyCode.G))
-        {
-            guard1 = false;
-            Debug.Log("풀");
-        }
+        
 
         if (timeSinceAttack > 0.35f)
         {
@@ -94,7 +108,7 @@ public class PlayerAttack : MonoBehaviour
     {
 
         Instantiate(dasheffect, dashspawn.position, Quaternion.identity);
-        DashBreaktime++;
+        
         
         
 
@@ -118,14 +132,8 @@ public class PlayerAttack : MonoBehaviour
         
 
         // 실제 이동 적용
-        if (DashBreaktime < 0.35)
-        {
-            transform.Translate(Vector3.right * dashspeed * Time.deltaTime);
-        }
-        if (DashBreaktime > 0.35)
-        {
-            Destroy(dasheffect);
-        }
+        
+        
         
         
 
@@ -139,7 +147,7 @@ public class PlayerAttack : MonoBehaviour
             if (collider.tag == "Player" && collider.gameObject != gameObject)
             {
                 collider.GetComponent<HpHandler>().SetHp(damage);
-
+                
             }
         }
     }

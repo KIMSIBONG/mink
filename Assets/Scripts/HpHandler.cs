@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class HpHandler : MonoBehaviour
@@ -12,6 +13,7 @@ public class HpHandler : MonoBehaviour
     private float currentHp;
     public bool knockback = false;
     private Animator animator;
+    public float force1 = 1f;
 
 
     //³Ë¹é
@@ -51,14 +53,14 @@ public class HpHandler : MonoBehaviour
     {
         if(GetComponent<PlayerAttack>().player1)
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            rb.AddForce(Vector2.right * force1, ForceMode2D.Impulse);
         }
     
 
         else
         {
             Vector2 pushDirection = Vector2.right;
-            transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
+            rb.AddForce(Vector2.right * force1, ForceMode2D.Impulse);
         }
     }
     
