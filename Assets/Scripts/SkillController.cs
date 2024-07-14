@@ -12,11 +12,11 @@ public class SkillController : MonoBehaviour
     {
         if (!gameObject.GetComponent<SpriteRenderer>().flipX)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
 
         else
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

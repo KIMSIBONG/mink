@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed = 5f;
     public float jumpForce = 10f;
     public LayerMask groundLayer;
-
-
+    public bool facingRight1 = true;
+    public bool facingRight2 = true;
     private Rigidbody2D rb;
     private Animator animator;
     private bool isGrounded;
@@ -42,20 +42,34 @@ public class PlayerMovement : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.A) && isGrounded)
                 {
-
+                    
                     animator.SetBool("Walk", true);
                     
                 }
-                if (Input.GetKeyUp(KeyCode.A) && isGrounded)
+                if (Input.GetKeyDown(KeyCode.A))
                 {
-                    animator.SetBool("Walk", false);
+                    if (facingRight1)
+                    {
+                        Flip1();
+                    }
                 }
-
+                
                 if (Input.GetKeyDown(KeyCode.D) && isGrounded)
                 {
 
                     animator.SetBool("Walk", true);
                     
+
+                }
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+
+                    
+
+                    if (!facingRight1)
+                    {
+                        Flip1();
+                    }
                 }
                 if (Input.GetKeyUp(KeyCode.D) && isGrounded)
                 {
@@ -81,6 +95,13 @@ public class PlayerMovement : MonoBehaviour
 
                     animator.SetBool("Walk", true);
                 }
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    if (facingRight2)
+                    {
+                        Flip2();
+                    }
+                }
                 if (Input.GetKeyUp(KeyCode.RightArrow) && isGrounded)
                 {
                     animator.SetBool("Walk", false);
@@ -90,6 +111,14 @@ public class PlayerMovement : MonoBehaviour
                 {
 
                     animator.SetBool("Walk", true);
+                }
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+
+                    if (!facingRight2)
+                    {
+                        Flip2();
+                    }
                 }
                 if (Input.GetKeyUp(KeyCode.LeftArrow) && isGrounded)
                 {
@@ -125,5 +154,19 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+    void Flip1()
+    {
+        facingRight1 = !facingRight1;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+    void Flip2()
+    {
+        facingRight2 = !facingRight2;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
